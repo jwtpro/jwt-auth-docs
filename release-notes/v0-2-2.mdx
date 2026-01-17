@@ -1,0 +1,56 @@
+---
+title: Version 0.2.2
+description: "Bug fixes for internationalization, timezone handling, and Freemius SDK update"
+---
+
+<Card title="Version 0.2.2 - Current Release" color="#41419c">
+  **Release Date**: January 16, 2026
+  **Status**: Current Stable Version
+  **Compatibility**: WordPress 5.0-6.7, PHP 8.1+
+</Card>
+
+Version 0.2.2 is a patch release focused on improving internationalization support and fixing timezone-related issues with refresh token validation.
+
+## Bug Fixes
+
+### Refresh Token Validation on Non-English WordPress
+
+**Issue**: Refresh token validation was failing on WordPress installations using languages other than English
+**Fix**: Resolved date/time parsing to work correctly regardless of WordPress language settings
+
+### Token Expiration with Custom Date Formats
+
+**Issue**: Token expiration checks could fail when WordPress used custom date/time format settings
+**Fix**: Expiration checks now work correctly with any date/time format configuration
+
+### Timezone Handling for Refresh Tokens
+
+**Issue**: Refresh token validation could produce incorrect results due to timezone inconsistencies
+**Fix**: Improved timezone handling ensures consistent validation across different server and WordPress timezone configurations
+
+## Updates
+
+### Freemius SDK 2.13.0
+
+Updated the Freemius SDK to version 2.13.0, bringing the latest improvements and fixes from the licensing framework.
+
+---
+
+## Getting Help
+
+If you encounter any issues:
+
+<CardGroup cols={2}>
+  <Card title="Email Support" icon="envelope" href="mailto:hello@jwtauth.pro">
+    Contact our support team directly
+  </Card>
+  <Card title="Visit JWT Auth Pro" icon="globe" href="https://jwtauth.pro">
+    Learn more about JWT Auth Pro
+  </Card>
+</CardGroup>
+
+---
+
+<Note>
+  This patch release focuses on stability improvements for international WordPress installations. All existing functionality remains unchanged.
+</Note>
