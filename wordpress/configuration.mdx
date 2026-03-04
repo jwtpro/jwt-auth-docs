@@ -18,12 +18,31 @@ Configure how JWT tokens are generated and managed:
 
 ## User Settings
 
-Control token behavior based on user actions:
+Control token behavior based on WordPress user events. These settings are active and trigger automatically when the corresponding user action occurs.
 
-- **Revoke on Password Change**: Automatically revoke all tokens when a user changes their password (default: true)
-- **Revoke on Role Change**: Revoke tokens when a user's role is modified (default: true)
-- **Revoke on Email Change**: Invalidate tokens when a user updates their email (default: true)
-- **Delete on User Delete**: Remove all tokens when a user is deleted (default: true)
+<Note>
+  As of v0.2.3, all user lifecycle hooks are registered and functional. If you had these settings enabled on a previous version, they will now take effect after updating.
+</Note>
+
+### Revoke on Password Change
+Automatically revoke all tokens when a user changes their password (default: true).
+
+Triggers on the WordPress `profile_update`, `password_reset`, and `after_password_reset` hooks. This covers both admin-initiated password changes and user-initiated password resets.
+
+### Revoke on Email Change
+Invalidate all tokens when a user updates their email address (default: true).
+
+Triggers on the WordPress `profile_update` hook. Note that WordPress requires email change confirmation via a link sent to the new address — the revocation fires only after the user confirms the change and the profile is updated.
+
+### Revoke on Role Change
+Revoke all tokens when a user's role is modified (default: true).
+
+Triggers on the WordPress `set_user_role` hook. This ensures that any change in permissions immediately invalidates existing sessions.
+
+### Delete on User Delete
+Remove all tokens and associated analytics records when a user is deleted (default: true).
+
+Triggers on the WordPress `delete_user` hook. Unlike the other settings which **revoke** tokens (marking them inactive), this setting **deletes** tokens and their associated analytics data entirely to prevent orphaned database rows.
 
 ## Data Management
 

@@ -35,6 +35,7 @@
             "group": "Release Notes",
             "pages": [
               "release-notes/overview",
+              "release-notes/v0-2-3",
               "release-notes/v0-2-2",
               "release-notes/v0-2-1",
               "release-notes/v0-2-0",

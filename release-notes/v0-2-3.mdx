@@ -1,0 +1,58 @@
+---
+title: Version 0.2.3
+description: "Bug fixes for profile update token revocation, analytics cleanup, and user lifecycle hooks activation"
+---
+
+<Card title="Version 0.2.3 - Current Release" color="#41419c">
+  **Release Date**: March 4, 2026
+  **Status**: Current Stable Version
+  **Compatibility**: WordPress 5.0-6.7, PHP 8.1+
+</Card>
+
+Version 0.2.3 is a patch release that activates user lifecycle hooks and fixes two bugs related to token revocation and analytics cleanup.
+
+## Bug Fixes
+
+### Profile Update Token Revocation
+
+**Issue**: When the "Revoke on Email Change" setting was disabled, the `handleProfileUpdate` method returned early, skipping the password-change revocation check entirely
+**Fix**: The early-return logic was corrected so that disabling email revocation no longer prevents password-change revocation from running
+
+### Token Deletion Analytics Cleanup
+
+**Issue**: Deleting all tokens for a user left orphaned rows in the analytics table
+**Fix**: `deleteAllUserTokens` now cleans up associated analytics records when removing a user's tokens
+
+## Improvements
+
+### User Lifecycle Hooks Now Active
+
+The user lifecycle hooks configured in **Settings > JWT Auth Pro > User Settings** are now registered and fully functional. The following hooks are active:
+
+- **Password Change**: Revokes all user tokens when a password is changed or reset
+- **Email Change**: Revokes all user tokens when a user's email address is updated
+- **Role Change**: Revokes all user tokens when a user's role is modified
+- **User Deletion**: Deletes all user tokens and associated analytics when a user is removed
+
+These hooks were previously defined but not registered in the service provider. They are now activated automatically when the corresponding setting is enabled.
+
+---
+
+## Getting Help
+
+If you encounter any issues:
+
+<CardGroup cols={2}>
+  <Card title="Email Support" icon="envelope" href="mailto:hello@jwtauth.pro">
+    Contact our support team directly
+  </Card>
+  <Card title="Visit JWT Auth Pro" icon="globe" href="https://jwtauth.pro">
+    Learn more about JWT Auth Pro
+  </Card>
+</CardGroup>
+
+---
+
+<Note>
+  This release ensures that user lifecycle settings work as documented. If you had previously configured these settings, they will now take effect automatically after updating.
+</Note>

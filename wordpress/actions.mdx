@@ -95,10 +95,10 @@ add_action('jwt_auth_analytics_cleanup_completed', function() {
 
 ## Error Events
 
-#### `jwt_auth_pro_error`
+#### `jwt_auth_error`
 Fires when various authentication errors occur.
 ```php
-add_action('jwt_auth_pro_error', function($error, $context) {
+add_action('jwt_auth_error', function($error, $context) {
     // Handle different error contexts
     switch ($context) {
         case 'password_change':
